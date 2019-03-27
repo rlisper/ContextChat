@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "ContextChat", "ContextChat.fsproj", "{DEFAE957-7B12-4263-B2CF-F4877A2F7502}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEFAE957-7B12-4263-B2CF-F4877A2F7502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFAE957-7B12-4263-B2CF-F4877A2F7502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFAE957-7B12-4263-B2CF-F4877A2F7502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFAE957-7B12-4263-B2CF-F4877A2F7502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
