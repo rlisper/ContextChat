@@ -74,3 +74,7 @@ type HomeScreen () =
         base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
     }
     *)
+
+    override x.OnRequestPermissionsResult(requestCode, permissions, grantResults) =
+        Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults)
+        base.OnRequestPermissionsResult(requestCode, permissions, grantResults)
