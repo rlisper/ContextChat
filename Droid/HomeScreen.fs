@@ -51,29 +51,23 @@ type HomeScreen () =
     override x.OnCreate(b :Bundle) =
         base.OnCreate(b)
 
-        Xamarin.Essentials.Platform.Init(x, b)
         CurrentPlatform.Init()
         App.Init(Some(x :> IAuthenticate))
-        
+        Xamarin.Essentials.Platform.Init(x, b)
+
         Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(x, b)
         match MySecureStorage.getAccount(Constants.GoogleAccountService) |> Async.RunSynchronously with
-        | [] ->
+        | None ->
             let presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter()
             presenter.Login(GoogleOAuth2.authenticator)
-        | account :: _ ->
-            ()
+        | Some(account) -> ()
         
         //let intent = ServerClients.Auth.OAuth2.googleAuth.GetUI(x)
         //x.StartActivity(intent)
 
-    (*
-    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-    {
-        Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+    override x.OnResume() =
+        base.OnResume()
 
-        base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-    *)
 
     override x.OnRequestPermissionsResult(requestCode, permissions, grantResults) =
         Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults)

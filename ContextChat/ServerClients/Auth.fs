@@ -3,6 +3,7 @@
 open System
 open System.Linq
 open System.Collections
+open System.Diagnostics
 
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
@@ -26,11 +27,10 @@ type MySecureStorage () =
         async {
             let! accountString = SecureStorage.GetAsync(serviceId) |> Async.AwaitTask
             try 
-                return
-                    JsonConvert.DeserializeObject<List<Account>>(accountString).AsEnumerable()
-                    |> List.ofSeq
-            with _ -> 
-                return []
+                return Some(JsonConvert.DeserializeObject<Account>(accountString))
+            with exn -> 
+                Debug.WriteLine(exn.Message)
+                return None
             }
 
 

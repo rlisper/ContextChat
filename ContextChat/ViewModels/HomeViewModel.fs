@@ -11,18 +11,20 @@ open ContextChat
 open ContextChat.Geo
 open ContextChat.Models
 open ContextChat.ServerClients.Azure.ApiClient
+open ContextChat.ServerClients.Auth
 
 open MvvmCross
 open MvvmCross.ViewModels
 open MvvmCross.Commands
+
 
 type HomeViewModel () =
     inherit MvxViewModel()
 
     let _homeModel = GeoHome()
     let _text = 
-        match AccountStore.Create().FindAccountsForService(Constants.AppName) |> List.ofSeq with
-        | account :: _ -> ref ("Hello " + account.Username)
+        match MySecureStorage.getAccount(Constants.GoogleAccountService) |> Async.RunSynchronously with
+        | Some(account) -> ref ("Hello " + account.ToString())
         | _ -> ref "Hello guest"
 
     let _location: Location option ref = ref None
